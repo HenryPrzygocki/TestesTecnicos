@@ -1,7 +1,7 @@
 class Node:
-  def __init__(self, id = None, key = None, fruta = None, left = None, right = None):
+  def __init__(self, val = None, key = None, fruta = None, left = None, right = None):
     self.fruta = fruta
-    self.id = id
+    self.val = val
     self.key = key
     self.left = left
     self.right = right
@@ -11,25 +11,25 @@ def createTree(Tree,Frutas):
   d = {}  
   
   # enumera a lista com o parentesco
-  for id, key in enumerate(Tree):
+  for val, key in enumerate(Tree):
     # cria os nós da árvore, usando o nome da fruta correspondente como valor e uma chave que indica o parentesco
-    d[id] = Node(id,key,Frutas[id])
+    d[val] = Node(val,key,Frutas[val])
 
     # se a chave for -1, é a raiz da arvore
     if key == -1:
-      root = d[id]
+      root = d[val]
     else:
       # define qual o nó mae deste dado elemento (fruta)
       mae = d[key]
 
       # define o filho como sendo a fruta do dicionario correspondete ao indice
       if mae.left:
-        mae.right = d[id]
+        mae.right = d[val]
       else:
-        mae.left = d[id]
+        mae.left = d[val]
   return root
 
-def hasPath(tree, id, key, path):
+def hasPath(tree, val, key, path):
   # se o nó nao existe ou esta num nivel superior ao desejado, nao há caminho
   if not tree or tree.key > key: 
     return False
@@ -37,19 +37,19 @@ def hasPath(tree, id, key, path):
   path.append(tree.fruta)
 
   # se é o nó desejado, tem caminho
-  if tree.id == id: 
+  if tree.val == val: 
     return True
   # se o nó esquerdo ou direito tem caminho
-  if hasPath(tree.right,id,key,path) or hasPath(tree.left,id,key,path): 
+  if hasPath(tree.right,val,key,path) or hasPath(tree.left,val,key,path): 
     return True
 
   # caso nenhum dos nós filhos tenha caminho, nó mae nao tem caminho 
   path.pop(-1)
   return False
 
-def searchTree(tree,id,key,path=[]):
+def searchTree(tree,val,key,path=[]):
   # se exite o caminho, retorna-o como array
-  if hasPath(tree,id,key,path): 
+  if hasPath(tree,val,key,path): 
     return " -> ".join(path)
   print("Sem caminho para fruta desejada")
   return path
