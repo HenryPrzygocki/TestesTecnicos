@@ -40,7 +40,7 @@ def hasPath(tree, id, key, path):
   if tree.id == id: 
     return True
   # se o nó esquerdo ou direito tem caminho
-  elif hasPath(tree.right,id,key,path) or hasPath(tree.left,id,key,path): 
+  if hasPath(tree.right,id,key,path) or hasPath(tree.left,id,key,path): 
     return True
 
   # caso nenhum dos nós filhos tenha caminho, nó mae nao tem caminho 
@@ -51,8 +51,7 @@ def searchTree(tree,id,key,path=[]):
   # se exite o caminho, retorna-o como array
   if hasPath(tree,id,key,path): 
     return " -> ".join(path)
-  else:
-    print("Sem caminho para fruta desejada")
+  print("Sem caminho para fruta desejada")
   return path
 
 
@@ -74,7 +73,7 @@ tree = createTree(Tree,Frutas)
 
 # Fruta desejada
 Buscar = "Goiaba"
-id = Frutas.index(Buscar.lower())
-key = Tree[id]
-path = searchTree(tree,id,key)
+index = Frutas.index(Buscar.lower())
+key = Tree[index]
+path = searchTree(tree,index,key)
 print(path)
