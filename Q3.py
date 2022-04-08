@@ -1,6 +1,6 @@
-def hasSum(array,sum):
-  # Verdade se para A[i] + A[j] = sum com i de (0,j) com j de (0,numero de elementos)
-  if [True for j in range(len(array)) for i in range(j) if (array[i] + array[j] == sum)]:
+def hasSum(array,x):
+  # Verdade se para A[i] + A[j] = x com i de (0,j) com j de (0,numero de elementos)
+  if [True for j in range(len(array)) for i in range(j) if (array[i] + array[j] == x)]:
     return True
   return False
 
